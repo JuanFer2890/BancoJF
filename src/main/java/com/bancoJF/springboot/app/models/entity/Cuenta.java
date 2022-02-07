@@ -21,7 +21,7 @@ public class Cuenta implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//estos son atributos
+	//estos se llaman atributos
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
