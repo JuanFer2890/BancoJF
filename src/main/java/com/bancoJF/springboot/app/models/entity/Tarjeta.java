@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -21,16 +24,17 @@ public class Tarjeta implements Serializable{
 	@Column (name="id_Tarjeta")
 	private Long idTarjeta;
 	
-	@Column (name="numeroTarjeta")
+	@Column (name="numero_Tarjeta", nullable = false, length=16)
 	@NotEmpty
 	private String numeroTarjeta;
 	
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name="id_Cuenta")
+	//relacionada con Cuenta.java "id_Cuenta"
+	@JoinColumn(name = "id_Cuenta", referencedColumnName = "id", nullable = false)
+	@NotEmpty
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Long idCuenta;
 	
-	@Column
+	@Column (name="icv", nullable = false, length=3)
 	@NotEmpty
 	private String icv;
 	
