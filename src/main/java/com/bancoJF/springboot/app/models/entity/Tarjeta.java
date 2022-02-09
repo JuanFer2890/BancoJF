@@ -27,12 +27,12 @@ public class Tarjeta implements Serializable{
 	@Column (name="numero_Tarjeta", nullable = false, length=16)
 	@NotEmpty
 	private String numeroTarjeta;
-	
+
 	//relacionada con Cuenta.java "id_Cuenta"
-	@JoinColumn(name = "id_Cuenta", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "id_Cuenta", referencedColumnName = "id_Cuenta", nullable = false)
 	@NotEmpty
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	private Long idCuenta;
+	private Cuenta idCuenta;
 	
 	@Column (name="icv", nullable = false, length=3)
 	@NotEmpty
@@ -60,20 +60,20 @@ public class Tarjeta implements Serializable{
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public Long getIdCuenta() {
-		return idCuenta;
-	}
-
-	public void setIdCuenta(Long idCuenta) {
-		this.idCuenta = idCuenta;
-	}
-
 	public String getIcv() {
 		return icv;
 	}
 
 	public void setIcv(String icv) {
 		this.icv = icv;
+	}
+	
+	public Cuenta getIdCuenta() {
+		return idCuenta;
+	}
+
+	public void setIdCuenta(Cuenta idCuenta) {
+		this.idCuenta = idCuenta;
 	}
 
 	public String getTipoTarjeta() {

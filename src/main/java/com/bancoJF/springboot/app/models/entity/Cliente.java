@@ -95,5 +95,4 @@ public class Cliente implements Serializable{
 		return serialVersionUID;
 	}
 	
-	
 }

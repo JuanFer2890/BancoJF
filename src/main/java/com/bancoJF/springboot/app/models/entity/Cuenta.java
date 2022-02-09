@@ -33,10 +33,10 @@ public class Cuenta implements Serializable{
 	private Long idCuenta;
 	
 	//Relacionada con Cliente.java "id_Cliente"
-	@JoinColumn(name = "id_Cliente", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "id_Cliente", referencedColumnName = "id_Cliente", nullable = false)
 	@NotEmpty
 	@OneToOne(optional = false, fetch = FetchType.LAZY)
-	private Long idCliente;
+	private Cliente idCliente;
 	
 	@Column(name="saldo_Actual")
 	@NotEmpty
@@ -58,11 +58,11 @@ public class Cuenta implements Serializable{
 		this.idCuenta = idCuenta;
 	}
 
-	public Long getIdCliente() {
+	public Cliente getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(Long idCliente) {
+	public void setIdCliente(Cliente idCliente) {
 		this.idCliente = idCliente;
 	}
 
