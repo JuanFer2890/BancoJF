@@ -23,24 +23,26 @@ public class ClienteController {
 	@Autowired
 	private IClienteDao clienteDao;
 	
-	@RequestMapping(value="/lista", method = RequestMethod.GET)
-	public String clienteLista(Model model)
+	@RequestMapping(value="/lista-Cliente", method = RequestMethod.GET)
+	public String clienteLista(Model model, Map<String, Object> modelCliente)
 	{
+		Cliente cliente = new Cliente();
+		modelCliente.put("cliente", cliente);
 		model.addAttribute("titulo", "Lista de clientes"); //el de string atribute name
 		model.addAttribute("cliente", clienteDao.findAll());
-		return "lista";
+		return "lista-Cliente";
 	}
 	
-	@RequestMapping(value = "/form-cliente")
+	@RequestMapping(value = "/form-Cliente")
 	public String crear(Map<String, Object> model)
 	{
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
 		model.put("titulo", "Nuevo cliente, llene los datos");
-		return "form-cliente";
+		return "form-Cliente";
 	}
 	
-	@RequestMapping(value = "form-cliente/{id}")
+	@RequestMapping(value = "form-Cliente/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model)
 	{
 		Cliente cliente = null;
@@ -55,10 +57,10 @@ public class ClienteController {
 		}
 		model.put("cliente", cliente);
 		model.put("titulo", "Edite el cliente");
-		return "form-cliente";
+		return "form-Cliente";
 	}
 	
-	@RequestMapping(value = "form-cliente", method = RequestMethod.POST)
+	@RequestMapping(value = "form-Cliente", method = RequestMethod.POST)
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status)
 	{
 		if(result.hasErrors())
@@ -72,7 +74,7 @@ public class ClienteController {
 		return "redirect:index";
 	}
 	
-	@RequestMapping(value = "/eliminarCliente/{id}")
+	@RequestMapping(value = "/eliminar-Cliente/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id)
 	{
 		if(id>0)
